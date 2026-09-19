@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FGCU DeepTech — Student Rocketry at Florida Gulf Coast University</title>
+<meta name="description" content="FGCU DeepTech is a student-run engineering team at Florida Gulf Coast University designing, building, and flying high-power rockets. Flight 001 launches this semester.">
+<meta name="theme-color" content="#06070A">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="FGCU DeepTech — From the Gulf Coast to Apogee">
+<meta property="og:description" content="Student-run rocketry and deep-tech engineering at Florida Gulf Coast University. Flight 001 launches this semester.">
+<meta property="og:image" content="assets/img/hero-launch.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- ===== STATUS STRIP ===== -->
+<div class="strip" role="status" aria-label="Program status">
+  <div class="strip__in">
+    <i class="go"><span class="dot dot--pulse"></span>Systems nominal</i>
+    <i class="hide-s">Flight&nbsp;001 &middot; Aquila-1</i>
+    <i><span id="strip-t" class="tnum">T-000:00:00:00</span></i>
+    <i class="hide-s" id="strip-pos">26.4637&deg;N 81.7748&deg;W</i>
+    <i class="last hide-s">Fort Myers, FL</i>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+        <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+        <path d="M16 8.2v14.6" stroke="#2EE08C" stroke-width=".9" stroke-opacity=".45"/>
+        <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+      </svg>
+      <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026 &middot; Season 01</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" aria-current="page">Mission</a>
+      <a href="vehicles.html">Vehicles</a>
+      <a href="divisions.html">Divisions</a>
+      <a href="join.html">Join</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="hdr__cta">
+      <a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a class="dl" href="index.html" aria-current="page"><em>01</em>Mission</a>
+  <a class="dl" href="vehicles.html"><em>02</em>Vehicles</a>
+  <a class="dl" href="divisions.html"><em>03</em>Divisions</a>
+  <a class="dl" href="join.html"><em>04</em>Join</a>
+  <a class="dl" href="partners.html"><em>05</em>Partners</a>
+  <a class="btn btn--primary" href="join.html">Apply now <span class="arw">&rarr;</span></a>
+</div>
+
+<!-- ===== SCROLL TELEMETRY ===== -->
+<div class="telem" aria-hidden="true">
+  <span>ALT</span>
+  <div class="telem__bar"><b></b></div>
+  <span class="telem__val tnum">000%</span>
+</div>
+
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__art" aria-hidden="true">
+      <img src="assets/img/hero-launch.webp" alt="" width="1920" height="1265" fetchpriority="high">
+    </div>
+
+    <div class="wrap hero__grid">
+      <div>
+        <div class="hero__eyebrow">
+          <span class="chip chip--go"><span class="dot"></span>Flight 001 &mdash; Fall 2026</span>
+          <span class="chip">Florida Gulf Coast University</span>
+        </div>
+
+        <h1 class="display d1">
+          <span class="ln"><span data-rv="rise" style="--d:40ms">From the</span></span>
+          <span class="ln"><span data-rv="rise" style="--d:140ms"><span data-decode>Gulf Coast</span></span></span>
+          <span class="ln"><span data-rv="rise" style="--d:240ms" class="em-g">to apogee.</span></span>
+        </h1>
+
+        <p class="lede" data-rv style="--d:420ms">
+          FGCU DeepTech is a student-run engineering team building high-power rockets from
+          raw stock and blank schematics &mdash; and the hardware that has to come back down
+          in one piece. First vehicle on the pad this semester.
+        </p>
+
+        <div class="btn-row" data-rv style="--d:520ms;margin-top:32px">
+          <a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a>
+          <a class="btn btn--ghost" href="vehicles.html">Vehicle specs <span class="arw">&rarr;</span></a>
+        </div>
+
+        <div class="hero__meta" data-rv style="--d:600ms">
+          <div>Program<b>Aquila</b></div>
+          <div>Vehicle<b>AQ-1</b></div>
+          <div>Class<b>High power &middot; J&ndash;K</b></div>
+          <div>Status<b class="em-g">Go for build</b></div>
+        </div>
+      </div>
+
+      <!-- countdown console -->
+      <div class="cdown frame is-live" data-cdown data-rv style="--d:300ms">
+        <span class="br-tr"></span><span class="br-bl"></span>
+        <div class="cdown__hd">
+          <span>T-Minus &middot; AQ-1</span>
+          <span class="em-g">Target</span>
+        </div>
+        <div class="cdown__clock">
+          <div class="cdown__seg"><b data-seg="d">000</b><span>Days</span></div>
+          <div class="cdown__seg"><b data-seg="h">00</b><span>Hrs</span></div>
+          <div class="cdown__seg"><b data-seg="m">00</b><span>Min</span></div>
+          <div class="cdown__seg"><b data-seg="s">00</b><span>Sec</span></div>
+        </div>
+        <div class="cdown__ft">
+          <span data-cstate>Count proceeding</span>
+          <span>14 Nov 2026 &middot; 13:00 ET</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="scroll-hint"><i></i>Scroll &mdash; mission brief</div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span class="hl">Flight 001 &mdash; Aquila-1</span>
+      <span>Dual-deploy recovery</span>
+      <span>Target apogee 5,280 ft</span>
+      <span>Student-built avionics</span>
+      <span>Static fire &rarr; flight readiness review</span>
+      <span class="hl">Recruiting all majors</span>
+      <span>Composite airframe R&amp;D</span>
+      <span>Propulsive landing study</span>
+      <span>Tripoli L1 / L2 certification track</span>
+      <!-- duplicate run keeps the marquee seamless -->
+      <span class="hl">Flight 001 &mdash; Aquila-1</span>
+      <span>Dual-deploy recovery</span>
+      <span>Target apogee 5,280 ft</span>
+      <span>Student-built avionics</span>
+      <span>Static fire &rarr; flight readiness review</span>
+      <span class="hl">Recruiting all majors</span>
+      <span>Composite airframe R&amp;D</span>
+      <span>Propulsive landing study</span>
+      <span>Tripoli L1 / L2 certification track</span>
+    </div>
+  </div>
+
+  <!-- ===== 01 / MISSION BRIEF ===== -->
+  <section class="section" id="brief">
+    <div class="wrap split">
+      <div class="split__rail">
+        <span class="idx">01 / 05</span>
+        <span class="lbl">Mission brief</span>
+      </div>
+
+      <div>
+        <h2 class="display d2" data-rv style="max-width:19ch">
+          A first-year team with a <span class="em-b">flight-hardware</span> problem to solve.
+        </h2>
+
+        <div style="margin-top:32px">
+          <p class="body" data-rv style="--d:80ms">
+            Most engineering education stops at the analysis. We start there and keep going:
+            tolerance stacks, layup schedules, ejection charge sizing, range safety paperwork,
+            and the uncomfortable moment where a number on a screen becomes a part that either
+            holds or doesn't.
+          </p>
+          <p class="body" data-rv style="--d:140ms">
+            <strong>DeepTech is FGCU's student rocketry and advanced-hardware team.</strong>
+            We run as seven divisions on a single integrated program, so a freshman with no
+            shop experience and a senior running structural analysis are working the same
+            vehicle, to the same review gates, on the same calendar.
+          </p>
+          <p class="body" data-rv style="--d:200ms">
+            Season 01 has one deliverable: put Aquila-1 on the rail, recover it intact, and
+            come back with data good enough to design the next one.
+          </p>
+        </div>
+
+        <dl class="stats" style="margin-top:44px" data-rv>
+          <div><dt>Season</dt><dd>01</dd></div>
+          <div><dt>Active divisions</dt><dd>07</dd></div>
+          <div><dt>Target apogee</dt><dd>5,280<em>ft</em></dd></div>
+          <div><dt>Motor class</dt><dd>J&ndash;K</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 / PROGRAM ===== -->
+  <section class="section" id="program">
+    <div class="wrap split">
+      <div class="split__rail">
+        <span class="idx">02 / 05</span>
+        <span class="lbl">Program</span>
+      </div>
+
+      <div>
+        <h2 class="display d2" data-rv style="max-width:17ch">
+          Three vehicles. One line of <span class="em-g">increasing difficulty</span>.
+        </h2>
+        <p class="lede" style="margin-top:22px" data-rv>
+          Each phase exists to earn the right to attempt the next one. Nothing gets skipped.
+        </p>
+
+        <div class="phases">
+          <article class="phase is-now" data-rv style="--d:60ms">
+            <span class="phase__no">Phase 01 &middot; Fall 2026</span>
+            <h3 class="display d3">Aquila&#8209;1</h3>
+            <p>
+              Single-stage solid. Commercial motor, student airframe, student avionics,
+              dual-deploy recovery. The point is to fly clean and get the team through a
+              full design&ndash;build&ndash;review&ndash;fly cycle.
+            </p>
+            <span class="chip chip--go"><span class="dot"></span>Go for build</span>
+          </article>
+
+          <article class="phase" data-rv style="--d:140ms">
+            <span class="phase__no">Phase 02 &middot; Spring 2027</span>
+            <h3 class="display d3">Aquila&#8209;2</h3>
+            <p>
+              10,000&nbsp;ft class. Custom flight computer, live telemetry downlink, filament-wound
+              composite airframe, and an instrumented payload bay open to other FGCU labs.
+            </p>
+            <span class="chip chip--dev"><span class="dot"></span>In design</span>
+          </article>
+
+          <article class="phase" data-rv style="--d:220ms">
+            <span class="phase__no">Phase 03 &middot; 2027&ndash;28</span>
+            <h3 class="display d3">Vertex</h3>
+            <p>
+              Propulsive descent testbed &mdash; thrust vector control, active guidance, and a
+              landing attempt. Low-altitude hop campaign first; the flight article comes later.
+            </p>
+            <span class="chip chip--hold"><span class="dot"></span>Research</span>
+          </article>
+        </div>
+
+        <div style="margin-top:38px" data-rv>
+          <a class="tlink" href="vehicles.html">Full vehicle dossier <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 / DIVISIONS CONSOLE ===== -->
+  <section class="section" id="divisions">
+    <div class="wrap split">
+      <div class="split__rail">
+        <span class="idx">03 / 05</span>
+        <span class="lbl">Divisions</span>
+      </div>
+
+      <div>
+        <h2 class="display d2" data-rv style="max-width:18ch">
+          Seven divisions. Pick where you <span class="em-b">want to be wrong</span> first.
+        </h2>
+        <p class="lede" style="margin-top:22px;margin-bottom:44px" data-rv>
+          No prior experience required for any of them. Hover or tap a division to read the brief.
+        </p>
+
+        <div class="divs" data-rv>
+          <div class="divs__list" role="tablist" aria-label="Divisions">
+            <button class="divs__row" type="button" role="tab" data-div="prop" aria-selected="true">
+              <span class="no">01</span><span class="nm">Propulsion</span><span class="tg">Solids &middot; Hybrids</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="struct" aria-selected="false">
+              <span class="no">02</span><span class="nm">Airframe &amp; Structures</span><span class="tg">Composites &middot; FEA</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="avio" aria-selected="false">
+              <span class="no">03</span><span class="nm">Avionics</span><span class="tg">PCB &middot; Firmware</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="rec" aria-selected="false">
+              <span class="no">04</span><span class="nm">Recovery</span><span class="tg">Dual deploy</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="gnc" aria-selected="false">
+              <span class="no">05</span><span class="nm">Guidance &amp; Control</span><span class="tg">TVC &middot; Sim</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="pay" aria-selected="false">
+              <span class="no">06</span><span class="nm">Payload &amp; Research</span><span class="tg">Science</span>
+            </button>
+            <button class="divs__row" type="button" role="tab" data-div="ops" aria-selected="false">
+              <span class="no">07</span><span class="nm">Mission Operations</span><span class="tg">Safety &middot; Range</span>
+            </button>
+          </div>
+
+          <div class="divs__panelwrap">
+            <div class="divs__panel frame">
+              <span class="br-tr"></span><span class="br-bl"></span>
+
+              <article data-pane="prop">
+                <span class="pk">Div 01 &mdash; Propulsion</span>
+                <h3 class="display d3">Make the thrust curve real</h3>
+                <p>Motor selection and characterization for AQ-1, static fire instrumentation, and the long-horizon work toward a student hybrid.</p>
+                <ul>
+                  <li>Thrust stand design &amp; load-cell calibration</li>
+                  <li>Motor performance modeling</li>
+                  <li>Propellant handling &amp; safety protocol</li>
+                  <li>Hybrid feed-system research</li>
+                </ul>
+              </article>
+
+              <article data-pane="struct">
+                <span class="pk">Div 02 &mdash; Airframe &amp; Structures</span>
+                <h3 class="display d3">Everything that has to not break</h3>
+                <p>Body tubes, fin cans, bulkheads, couplers and the load paths between them. CAD to cut parts, not to make pictures.</p>
+                <ul>
+                  <li>SolidWorks / Fusion modeling</li>
+                  <li>Carbon &amp; fiberglass layup</li>
+                  <li>FEA on flight loads</li>
+                  <li>Machining &amp; additive fabrication</li>
+                </ul>
+              </article>
+
+              <article data-pane="avio">
+                <span class="pk">Div 03 &mdash; Avionics</span>
+                <h3 class="display d3">The vehicle's nervous system</h3>
+                <p>Flight computer hardware and firmware: sensing, logging, deployment events, and the radio link back to the ground station.</p>
+                <ul>
+                  <li>PCB design in KiCad</li>
+                  <li>Embedded C / C++ on STM32</li>
+                  <li>Barometric &amp; IMU sensor fusion</li>
+                  <li>LoRa telemetry &amp; ground software</li>
+                </ul>
+              </article>
+
+              <article data-pane="rec">
+                <span class="pk">Div 04 &mdash; Recovery</span>
+                <h3 class="display d3">Bring it back flyable</h3>
+                <p>Dual-deployment architecture, parachute sizing, ejection charge testing, and the shock-cord math nobody thinks about until it fails.</p>
+                <ul>
+                  <li>Descent-rate &amp; drift analysis</li>
+                  <li>Black powder charge ground testing</li>
+                  <li>Parachute fabrication</li>
+                  <li>Deployment reliability review</li>
+                </ul>
+              </article>
+
+              <article data-pane="gnc">
+                <span class="pk">Div 05 &mdash; Guidance &amp; Control</span>
+                <h3 class="display d3">The Vertex problem</h3>
+                <p>Six-degree-of-freedom simulation now; thrust vector control and propulsive landing algorithms as the program matures.</p>
+                <ul>
+                  <li>6-DOF flight simulation</li>
+                  <li>Control-loop design &amp; tuning</li>
+                  <li>TVC gimbal prototyping</li>
+                  <li>State estimation / Kalman filtering</li>
+                </ul>
+              </article>
+
+              <article data-pane="pay">
+                <span class="pk">Div 06 &mdash; Payload &amp; Research</span>
+                <h3 class="display d3">Give the flight a reason</h3>
+                <p>Instrumented payloads flown for FGCU research groups and for our own aerodynamic and environmental data collection.</p>
+                <ul>
+                  <li>Sensor package integration</li>
+                  <li>Data reduction &amp; analysis</li>
+                  <li>Environmental &amp; vibration testing</li>
+                  <li>Interface control documentation</li>
+                </ul>
+              </article>
+
+              <article data-pane="ops">
+                <span class="pk">Div 07 &mdash; Mission Operations</span>
+                <h3 class="display d3">Nothing flies without this</h3>
+                <p>Launch day runs on checklists, waivers and comms. Ops also owns the budget, the sponsor relationships and outreach.</p>
+                <ul>
+                  <li>Range safety &amp; FAA waiver process</li>
+                  <li>Launch checklists &amp; comms protocol</li>
+                  <li>Budget, procurement &amp; sponsorship</li>
+                  <li>Outreach, media &amp; documentation</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:36px" data-rv>
+          <a class="tlink" href="divisions.html">Division detail &amp; leads <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 / FLIGHT 001 ===== -->
+  <section class="section" id="flight001">
+    <div class="wrap split">
+      <div class="split__rail">
+        <span class="idx">04 / 05</span>
+        <span class="lbl">Flight 001</span>
+      </div>
+
+      <div>
+        <div style="display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(24px,4vw,56px);align-items:start" class="f1grid">
+          <div>
+            <h2 class="display d2" data-rv style="max-width:14ch">Aquila&#8209;1</h2>
+            <p class="body" data-rv style="margin-top:20px;--d:80ms">
+              Named for the eagle and the constellation both. AQ-1 is deliberately unglamorous:
+              a commercial motor, a conservative fin geometry, and every gram of ambition spent
+              on the systems we actually have to learn &mdash; recovery, avionics and launch operations.
+            </p>
+
+            <table class="spec" style="margin-top:32px" data-rv>
+              <caption class="kicker" style="text-align:left;padding-bottom:14px">Preliminary specification</caption>
+              <tbody>
+                <tr><th scope="row">Length</th><td>96 in <small>overall, assembled</small></td></tr>
+                <tr><th scope="row">Airframe dia.</th><td>4.0 in <small>fiberglass body tube</small></td></tr>
+                <tr><th scope="row">Liftoff mass</th><td>21.5 lb <small>estimate, wet</small></td></tr>
+                <tr><th scope="row">Motor</th><td>J&ndash;K class <small>commercial solid, reloadable</small></td></tr>
+                <tr><th scope="row">Target apogee</th><td>5,280 ft <small>one statute mile</small></td></tr>
+                <tr><th scope="row">Recovery</th><td>Dual deploy <small>drogue at apogee, main at 600 ft</small></td></tr>
+                <tr><th scope="row">Avionics</th><td>Redundant <small>COTS primary, student-built backup</small></td></tr>
+                <tr><th scope="row">Stability</th><td>2.1 cal <small>off-rail margin</small></td></tr>
+              </tbody>
+            </table>
+            <p class="kicker" style="margin-top:14px">Values preliminary &mdash; frozen at critical design review.</p>
+          </div>
+
+          <figure class="fig frame" data-rv style="--d:120ms">
+            <span class="br-tr"></span><span class="br-bl"></span>
+          <svg class="vdiag" viewBox="0 0 320 620" role="img" aria-label="Aquila-1 vehicle elevation showing nose cone, payload bay, avionics bay, recovery section, coupler, motor tube and fins">
+            <!-- centreline -->
+            <line class="cl" x1="120" y1="10" x2="120" y2="600"/>
+
+            <!-- overall dimension -->
+            <line class="dim" x1="52" y1="18" x2="52" y2="578"/>
+            <line class="dim" x1="46" y1="18" x2="58" y2="18"/>
+            <line class="dim" x1="46" y1="578" x2="58" y2="578"/>
+            <text class="dl" x="44" y="300" transform="rotate(-90 44 300)">96 in overall</text>
+
+            <!-- airframe -->
+            <path class="sk" d="M98 120 C98 70 107 32 120 18 C133 32 142 70 142 120"/>
+            <rect class="sk" x="98" y="120" width="44" height="90"/>
+            <rect class="sk" x="98" y="210" width="44" height="70"/>
+            <rect class="sk" x="98" y="280" width="44" height="120"/>
+            <rect class="sk fill" x="98" y="400" width="44" height="18"/>
+            <rect class="sk" x="98" y="418" width="44" height="142"/>
+
+            <!-- fins -->
+            <path class="sk fill" d="M98 470 L64 546 L64 560 L98 560 Z"/>
+            <path class="sk fill" d="M142 470 L176 546 L176 560 L142 560 Z"/>
+
+            <!-- nozzle -->
+            <path class="sk" d="M104 560 L98 580 L142 580 L136 560"/>
+
+            <!-- callouts -->
+            <g class="cal">
+              <line x1="142" y1="70"  x2="196" y2="70"/>  <text x="202" y="73">5:1 ogive nose</text>
+              <line x1="142" y1="165" x2="196" y2="165"/> <text x="202" y="168">Payload bay</text>
+              <line x1="142" y1="245" x2="196" y2="245"/> <text x="202" y="248">Avionics bay</text>
+              <line x1="142" y1="340" x2="196" y2="340"/> <text x="202" y="343">Recovery / main</text>
+              <line x1="142" y1="409" x2="196" y2="409"/> <text x="202" y="412">Coupler</text>
+              <line x1="142" y1="450" x2="196" y2="450"/> <text x="202" y="453">Motor tube</text>
+              <line x1="176" y1="552" x2="196" y2="552"/> <text x="202" y="555">4x G10 fin</text>
+            </g>
+
+            <!-- station marks -->
+            <g class="cal">
+              <line x1="64" y1="120" x2="98" y2="120"/> <text class="stn" x="66" y="116">STA 1</text>
+              <line x1="64" y1="280" x2="98" y2="280"/> <text class="stn" x="66" y="276">STA 2</text>
+              <line x1="64" y1="418" x2="98" y2="418"/> <text class="stn" x="66" y="414">STA 3</text>
+            </g>
+          </svg>
+            <figcaption class="fig__cap"><span>Fig. 01 &mdash; AQ-1 elevation</span><span>Not to scale</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="btn-row" style="margin-top:44px" data-rv>
+          <a class="btn btn--ghost" href="vehicles.html">Flight profile &amp; roadmap <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 / PARTNERS ===== -->
+  <section class="section section--tight" id="partners">
+    <div class="wrap split">
+      <div class="split__rail">
+        <span class="idx">05 / 05</span>
+        <span class="lbl">Partners</span>
+      </div>
+
+      <div>
+        <h2 class="display d2" data-rv style="max-width:20ch">Backed by people who build real things.</h2>
+        <p class="lede" style="margin-top:20px;margin-bottom:36px" data-rv>
+          Season 01 is funded by departmental support, local industry and alumni. Your logo goes on
+          the airframe, and your engineers get first look at the people who built it.
+        </p>
+
+        <div class="plot" data-rv>
+          <div>Partner slot 01</div><div>Partner slot 02</div><div>Partner slot 03</div>
+          <div>Partner slot 04</div><div>Partner slot 05</div><div>Partner slot 06</div>
+        </div>
+
+        <div class="btn-row" style="margin-top:32px" data-rv>
+          <a class="btn btn--ghost" href="partners.html">Sponsorship tiers <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <section class="band">
+    <div class="wrap band__in">
+      <div data-rv>
+        <span class="kicker">Recruiting &mdash; Season 01</span>
+        <h2 class="display d2" style="margin-top:16px">Build the first one.</h2>
+        <p>
+          Every team has exactly one first vehicle. All majors, all class years, no experience
+          assumed &mdash; we will teach you the rest.
+        </p>
+      </div>
+      <div class="btn-row" data-rv style="--d:120ms">
+        <a class="btn btn--primary" href="join.html">Apply to join <span class="arw">&rarr;</span></a>
+        <a class="btn btn--ghost" href="partners.html">Sponsor us <span class="arw">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:18px">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+            <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+            <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+          </svg>
+          <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026</small></span>
+        </a>
+        <p class="body" style="font-size:.9rem;max-width:34ch">
+          Student rocketry and advanced hardware at Florida Gulf Coast University.
+        </p>
+      </div>
+
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="vehicles.html">Vehicles</a></li>
+          <li><a href="vehicles.html#profile">Flight profile</a></li>
+          <li><a href="divisions.html">Divisions</a></li>
+          <li><a href="index.html#program">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="join.html">Join the team</a></li>
+          <li><a href="join.html#faq">FAQ</a></li>
+          <li><a href="partners.html">Sponsorship</a></li>
+          <li><a href="mailto:deeptech@fgcu.edu">Email us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ground station</h4>
+        <address class="ftr__addr">
+          Florida Gulf Coast University<br>
+          10501 FGCU Blvd S<br>
+          Fort Myers, FL 33965<br>
+          26.4637&deg;N 81.7748&deg;W
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordmark" aria-hidden="true"><b>DEEPTECH</b></div>
+
+  <div class="wrap">
+    <div class="ftr__legal">
+      <span>&copy; 2026 FGCU DeepTech &mdash; Registered student organization</span>
+      <span>Season 01 &middot; Flight 001 &middot; Aquila-1</span>
+      <span>Ad astra per aspera</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

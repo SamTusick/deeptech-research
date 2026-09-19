@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicles — FGCU DeepTech</title>
+<meta name="description" content="Aquila-1 specifications, nominal flight profile, and the Aquila-2 and Vertex roadmap for FGCU DeepTech.">
+<meta name="theme-color" content="#06070A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vehicles — FGCU DeepTech">
+<meta property="og:description" content="Aquila-1 specifications, nominal flight profile, and the Aquila-2 and Vertex roadmap for FGCU DeepTech.">
+<meta property="og:image" content="assets/img/hero-launch.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- ===== STATUS STRIP ===== -->
+<div class="strip" role="status" aria-label="Program status">
+  <div class="strip__in">
+    <i class="go"><span class="dot dot--pulse"></span>Systems nominal</i>
+    <i class="hide-s">Flight&nbsp;001 &middot; Aquila-1</i>
+    <i><span id="strip-t" class="tnum">T-000:00:00:00</span></i>
+    <i class="hide-s" id="strip-pos">26.4637&deg;N 81.7748&deg;W</i>
+    <i class="last hide-s">Fort Myers, FL</i>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+        <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+        <path d="M16 8.2v14.6" stroke="#2EE08C" stroke-width=".9" stroke-opacity=".45"/>
+        <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+      </svg>
+      <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026 &middot; Season 01</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Mission</a>
+      <a href="vehicles.html" aria-current="page">Vehicles</a>
+      <a href="divisions.html">Divisions</a>
+      <a href="join.html">Join</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="hdr__cta">
+      <a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a class="dl" href="index.html"><em>01</em>Mission</a>
+  <a class="dl" href="vehicles.html" aria-current="page"><em>02</em>Vehicles</a>
+  <a class="dl" href="divisions.html"><em>03</em>Divisions</a>
+  <a class="dl" href="join.html"><em>04</em>Join</a>
+  <a class="dl" href="partners.html"><em>05</em>Partners</a>
+  <a class="btn btn--primary" href="join.html">Apply now <span class="arw">&rarr;</span></a>
+</div>
+
+<!-- ===== SCROLL TELEMETRY ===== -->
+<div class="telem" aria-hidden="true">
+  <span>ALT</span>
+  <div class="telem__bar"><b></b></div>
+  <span class="telem__val tnum">000%</span>
+</div>
+
+<main id="main">
+  <section class="phead">
+    <div class="wrap">
+      <div class="phead__crumb"><b>Program / Vehicles</b></div>
+      <div class="phead__grid">
+        <div>
+          <h1 class="display d1" data-rv>Flight<br>hardware.</h1>
+          <p class="lede" data-rv style="--d:120ms">Three vehicles across three semesters. Each one exists to buy the team the experience required to attempt the next. Specifications below are preliminary until critical design review.</p>
+        </div>
+        <div data-rv style="--d:200ms"><dl class="stats" style="border-top:0">
+            <div style="border-left:1px solid var(--line)"><dt>In build</dt><dd>AQ-1</dd></div>
+            <div><dt>In design</dt><dd>AQ-2</dd></div>
+            <div><dt>Research</dt><dd>VTX</dd></div>
+          </dl></div>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><hr class="rule"></div>
+
+
+  <!-- 01 / AQUILA-1 -->
+  <section class="section" id="aquila-1">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">01 / 04</span><span class="lbl">Vehicle</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Aquila&#8209;1</h2>
+          <span class="chip chip--go"><span class="dot dot--pulse"></span>Go for build</span>
+        </div>
+
+        <p class="body" data-rv style="margin-top:22px;--d:60ms">
+          AQ-1 is intentionally conservative. A commercial reloadable motor, a proven fin
+          geometry, and a fiberglass airframe we can actually finish. The ambition is spent
+          where the learning is: <strong>redundant recovery, student-designed avionics, and a real
+          launch-operations cadence</strong> with review gates the whole team has to pass.
+        </p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:44px">
+          <div data-rv>
+            <table class="spec">
+              <caption class="kicker" style="text-align:left;padding-bottom:14px">Airframe</caption>
+              <tbody>
+                <tr><th scope="row">Overall length</th><td>96 in</td></tr>
+                <tr><th scope="row">Body diameter</th><td>4.0 in <small>G12 fiberglass</small></td></tr>
+                <tr><th scope="row">Fin count</th><td>4 <small>clipped delta, through-wall</small></td></tr>
+                <tr><th scope="row">Fin material</th><td>G10 <small>0.125 in</small></td></tr>
+                <tr><th scope="row">Nose cone</th><td>5:1 ogive</td></tr>
+                <tr><th scope="row">Coupler length</th><td>8 in <small>2x body dia. min.</small></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div data-rv style="--d:90ms">
+            <table class="spec">
+              <caption class="kicker" style="text-align:left;padding-bottom:14px">Performance</caption>
+              <tbody>
+                <tr><th scope="row">Liftoff mass</th><td>21.5 lb <small>wet, estimated</small></td></tr>
+                <tr><th scope="row">Motor</th><td>J&ndash;K class <small>54 mm reloadable</small></td></tr>
+                <tr><th scope="row">Total impulse</th><td>~1,200 N&middot;s</td></tr>
+                <tr><th scope="row">Rail exit velocity</th><td>72 ft/s <small>8 ft 1515 rail</small></td></tr>
+                <tr><th scope="row">Max velocity</th><td>Mach 0.62</td></tr>
+                <tr><th scope="row">Target apogee</th><td>5,280 ft</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3 class="display d3" style="margin-top:56px" data-rv>Subsystems</h3>
+        <div class="cards" style="margin-top:22px" data-rv>
+          <article class="card">
+            <span class="card__no">SS-01</span><h3>Recovery</h3>
+            <p>Dual deployment. Drogue at apogee, main at 600 ft AGL. Redundant altimeters on separate
+            power and separate charges &mdash; either one alone can bring the vehicle home.</p>
+            <span class="chip chip--go"><span class="dot"></span>Ground tested</span>
+          </article>
+          <article class="card">
+            <span class="card__no">SS-02</span><h3>Avionics</h3>
+            <p>COTS altimeter as flight-critical primary, plus a student-built STM32 logger recording
+            barometric, IMU and GPS data at 100 Hz for post-flight reconstruction.</p>
+            <span class="chip chip--dev"><span class="dot"></span>Bench integration</span>
+          </article>
+          <article class="card">
+            <span class="card__no">SS-03</span><h3>Telemetry</h3>
+            <p>915 MHz LoRa downlink to a laptop ground station with live altitude, battery state and
+            a packet-loss readout. Non-flight-critical by design.</p>
+            <span class="chip chip--dev"><span class="dot"></span>In development</span>
+          </article>
+          <article class="card">
+            <span class="card__no">SS-04</span><h3>Payload bay</h3>
+            <p>A six-inch instrumented section on a documented mechanical and electrical interface, so
+            other FGCU labs can fly something without redesigning the rocket.</p>
+            <span class="chip chip--hold"><span class="dot"></span>Interface frozen</span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 / FLIGHT PROFILE -->
+  <section class="section" id="profile">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">02 / 04</span><span class="lbl">Flight profile</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:17ch">Nominal profile, <span class="em-g">liftoff to touchdown</span>.</h2>
+        <p class="lede" style="margin-top:20px;margin-bottom:36px" data-rv>
+          Simulated in OpenRocket and cross-checked against an independent 6-DOF model. Roughly three
+          minutes of flight for two semesters of work.
+        </p>
+
+      <div class="traj" data-rv>
+        <svg viewBox="0 0 900 350" role="img" aria-label="Aquila-1 nominal flight profile from liftoff through touchdown">
+          <line class="ax" x1="46" y1="16" x2="46" y2="306"/>
+          <line class="ax" x1="46" y1="306" x2="874" y2="306"/>
+          <line class="ax" x1="46" y1="56"  x2="874" y2="56"  stroke-dasharray="2 6"/>
+          <line class="ax" x1="46" y1="181" x2="874" y2="181" stroke-dasharray="2 6"/>
+
+          <text x="8" y="59">5280</text>
+          <text x="8" y="184">2640</text>
+          <text x="20" y="309">0</text>
+          <text x="820" y="326">Downrange</text>
+
+          <path class="ghost" d="M60 306 C 126 306 158 156 252 86 C 322 34 382 48 434 56 C 486 64 524 128 566 178 C 606 226 646 256 704 274 C 762 292 806 300 848 306"/>
+          <path class="path"  d="M60 306 C 126 306 158 156 252 86 C 322 34 382 48 434 56 C 486 64 524 128 566 178 C 606 226 646 256 704 274 C 762 292 806 300 848 306"/>
+
+          <circle class="mk" cx="60"  cy="306" r="4"/>
+          <circle class="mk" cx="252" cy="86"  r="4"/>
+          <circle class="mk" cx="434" cy="56"  r="4"/>
+          <circle class="mk" cx="566" cy="178" r="4"/>
+          <circle class="mk" cx="848" cy="306" r="4"/>
+
+          <text class="v" x="52"  y="290">T+0 Liftoff</text>
+          <text class="v" x="200" y="74">T+2.9 Burnout</text>
+          <text class="v" x="392" y="42">T+18 Apogee / Drogue</text>
+          <text class="v" x="524" y="166">T+96 Main @ 600 ft</text>
+          <text class="v" x="760" y="290">T+185 Touchdown</text>
+        </svg>
+      </div>
+
+        <ol class="steps" style="margin-top:48px" data-rv>
+            <li>
+              <span class="sn tnum">T-00:45:00</span>
+              <div><h3>Arm avionics</h3><p>Continuity check on both altimeters, ejection charges installed at the pad.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T-00:05:00</span>
+              <div><h3>Pad clear</h3><p>Range declares the pad clear; RSO gives the count.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T+00:00.0</span>
+              <div><h3>Ignition</h3><p>Motor comes up to pressure; vehicle leaves an 8 ft 1515 rail at roughly 72 ft/s.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T+00:02.9</span>
+              <div><h3>Burnout</h3><p>Motor cutoff. Coast phase begins at approximately Mach 0.62.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T+00:18</span>
+              <div><h3>Apogee / drogue</h3><p>Primary altimeter fires the drogue charge within 0.5 s of apogee.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T+01:36</span>
+              <div><h3>Main deployment</h3><p>Main canopy at 600 ft AGL, targeting a 17 ft/s descent rate.</p></div>
+            </li>
+            <li>
+              <span class="sn tnum">T+03:05</span>
+              <div><h3>Touchdown</h3><p>Recovery team walks the predicted drift ellipse with GPS and RDF backup.</p></div>
+            </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 / ROADMAP -->
+  <section class="section" id="roadmap">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">03 / 04</span><span class="lbl">Next</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:16ch">What AQ&#8209;1 buys us.</h2>
+
+        <div class="phases" style="margin-top:40px">
+          <article class="phase" data-rv>
+            <span class="phase__no">Phase 02 &middot; Spring 2027</span>
+            <h3 class="display d3">Aquila&#8209;2</h3>
+            <p>10,000 ft class on a filament-wound composite airframe. Fully student-designed flight
+            computer as the primary, live telemetry, and an open payload interface.</p>
+            <span class="chip chip--dev"><span class="dot"></span>In design</span>
+          </article>
+          <article class="phase" data-rv style="--d:100ms">
+            <span class="phase__no">Phase 03 &middot; 2027&ndash;28</span>
+            <h3 class="display d3">Vertex</h3>
+            <p>Propulsive descent testbed. Thrust vector control, active guidance, landing legs, and a
+            hop campaign that stays under 100 ft until the control loop earns more.</p>
+            <span class="chip chip--hold"><span class="dot"></span>Research</span>
+          </article>
+          <article class="phase" data-rv style="--d:180ms">
+            <span class="phase__no">Beyond</span>
+            <h3 class="display d3">Competition</h3>
+            <p>Once the program has two clean flights on record, we intend to field a team at a
+            national collegiate competition and put FGCU on that board.</p>
+            <span class="chip chip--hold"><span class="dot"></span>Proposed</span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 / VERTEX -->
+  <section class="section" id="vertex">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">04 / 04</span><span class="lbl">Research</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:18ch">The thing that comes <span class="em-b">back down</span>.</h2>
+        <p class="body" data-rv style="margin-top:22px">
+          Parachutes are solved. Landing under power is not &mdash; at least not at our scale, on our
+          budget, with our headcount. That makes it the most interesting problem available to us,
+          and it is the reason this club is called DeepTech and not Rocket Club.
+        </p>
+        <p class="body" data-rv style="--d:80ms">
+          Vertex is the long research thread: a low-altitude hop vehicle that has to sense its own
+          state, steer its own thrust, and put itself down on its legs. We are treating it as a
+          multi-year control-systems problem, and the work starts now in simulation.
+        </p>
+
+        <div class="cards" style="margin-top:40px" data-rv>
+          <article class="card">
+            <span class="card__no">R-01</span><h3>State estimation</h3>
+            <p>Fusing IMU, barometer and GPS into a pose estimate good enough to close a landing loop
+            on, and honest about when it is not.</p>
+          </article>
+          <article class="card">
+            <span class="card__no">R-02</span><h3>Thrust vector control</h3>
+            <p>A two-axis gimbal, servo characterisation, and the actuator lag budget that decides
+            whether the controller is stable at all.</p>
+          </article>
+          <article class="card">
+            <span class="card__no">R-03</span><h3>Guidance</h3>
+            <p>Convex trajectory optimisation for powered descent, run offline first, then trimmed
+            until it fits on the flight computer.</p>
+          </article>
+          <article class="card">
+            <span class="card__no">R-04</span><h3>Landing structure</h3>
+            <p>Deployable legs, touchdown load attenuation, and a test rig that drops the article
+            long before anything flies.</p>
+          </article>
+        </div>
+
+        <div class="btn-row" style="margin-top:44px" data-rv>
+          <a class="btn btn--primary" href="join.html">Work on this <span class="arw">&rarr;</span></a>
+          <a class="btn btn--ghost" href="divisions.html">Guidance &amp; control division <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap band__in">
+      <div data-rv>
+        <span class="kicker">Season 01</span>
+        <h2 class="display d2" style="margin-top:16px">Hardware beats slideware.</h2>
+        <p>AQ-1 flies this semester. There is room on every division for people who want their hands on it.</p>
+      </div>
+      <div class="btn-row" data-rv><a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:18px">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+            <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+            <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+          </svg>
+          <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026</small></span>
+        </a>
+        <p class="body" style="font-size:.9rem;max-width:34ch">
+          Student rocketry and advanced hardware at Florida Gulf Coast University.
+        </p>
+      </div>
+
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="vehicles.html">Vehicles</a></li>
+          <li><a href="vehicles.html#profile">Flight profile</a></li>
+          <li><a href="divisions.html">Divisions</a></li>
+          <li><a href="index.html#program">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="join.html">Join the team</a></li>
+          <li><a href="join.html#faq">FAQ</a></li>
+          <li><a href="partners.html">Sponsorship</a></li>
+          <li><a href="mailto:deeptech@fgcu.edu">Email us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ground station</h4>
+        <address class="ftr__addr">
+          Florida Gulf Coast University<br>
+          10501 FGCU Blvd S<br>
+          Fort Myers, FL 33965<br>
+          26.4637&deg;N 81.7748&deg;W
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordmark" aria-hidden="true"><b>DEEPTECH</b></div>
+
+  <div class="wrap">
+    <div class="ftr__legal">
+      <span>&copy; 2026 FGCU DeepTech &mdash; Registered student organization</span>
+      <span>Season 01 &middot; Flight 001 &middot; Aquila-1</span>
+      <span>Ad astra per aspera</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
