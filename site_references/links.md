@@ -6,4 +6,8 @@
 
 ### Princeton: https://www.princetonrocketry.com/
 
+### Michigan: https://masa.engin.umich.edu/
+
+### Purdue: https://purdueseds.space/
+
 ###
