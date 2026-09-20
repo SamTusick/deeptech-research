@@ -1,6 +1,6 @@
 # FGCU Rocket Payload Challenge - Research Workspace
 
-This repo is Krish's research workspace for the FGCU Rocket Payload Challenge, Fall 2026.
+This repo is our research workspace for the FGCU Rocket Payload Challenge, Fall 2026.
 Its job is to help pick a payload idea, stress test it honestly, and get to a 1-3 page
 application. It is not the application itself.
 
