@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join — FGCU DeepTech</title>
+<meta name="description" content="Join FGCU DeepTech. All majors, all class years, no experience assumed. Onboarding track, meeting schedule and FAQ.">
+<meta name="theme-color" content="#06070A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Join — FGCU DeepTech">
+<meta property="og:description" content="Join FGCU DeepTech. All majors, all class years, no experience assumed. Onboarding track, meeting schedule and FAQ.">
+<meta property="og:image" content="assets/img/hero-launch.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- ===== STATUS STRIP ===== -->
+<div class="strip" role="status" aria-label="Program status">
+  <div class="strip__in">
+    <i class="go"><span class="dot dot--pulse"></span>Systems nominal</i>
+    <i class="hide-s">Flight&nbsp;001 &middot; Aquila-1</i>
+    <i><span id="strip-t" class="tnum">T-000:00:00:00</span></i>
+    <i class="hide-s" id="strip-pos">26.4637&deg;N 81.7748&deg;W</i>
+    <i class="last hide-s">Fort Myers, FL</i>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+        <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+        <path d="M16 8.2v14.6" stroke="#2EE08C" stroke-width=".9" stroke-opacity=".45"/>
+        <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+      </svg>
+      <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026 &middot; Season 01</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Mission</a>
+      <a href="vehicles.html">Vehicles</a>
+      <a href="divisions.html">Divisions</a>
+      <a href="join.html" aria-current="page">Join</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="hdr__cta">
+      <a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a class="dl" href="index.html"><em>01</em>Mission</a>
+  <a class="dl" href="vehicles.html"><em>02</em>Vehicles</a>
+  <a class="dl" href="divisions.html"><em>03</em>Divisions</a>
+  <a class="dl" href="join.html" aria-current="page"><em>04</em>Join</a>
+  <a class="dl" href="partners.html"><em>05</em>Partners</a>
+  <a class="btn btn--primary" href="join.html">Apply now <span class="arw">&rarr;</span></a>
+</div>
+
+<!-- ===== SCROLL TELEMETRY ===== -->
+<div class="telem" aria-hidden="true">
+  <span>ALT</span>
+  <div class="telem__bar"><b></b></div>
+  <span class="telem__val tnum">000%</span>
+</div>
+
+<main id="main">
+  <section class="phead">
+    <div class="wrap">
+      <div class="phead__crumb"><b>Get involved / Join</b></div>
+      <div class="phead__grid">
+        <div>
+          <h1 class="display d1" data-rv>Build the<br><span class="em-g">first one.</span></h1>
+          <p class="lede" data-rv style="--d:120ms">Every team gets exactly one first vehicle, and this is ours. All majors, all class years, no experience assumed. The only real requirement is that you show up to the thing you said you would show up to.</p>
+        </div>
+        <div data-rv style="--d:200ms"><div class="cdown frame is-live" data-cdown>
+            <span class="br-tr"></span><span class="br-bl"></span>
+            <div class="cdown__hd"><span>T-Minus &middot; AQ-1</span><span class="em-g">Target</span></div>
+            <div class="cdown__clock">
+              <div class="cdown__seg"><b data-seg="d">000</b><span>Days</span></div>
+              <div class="cdown__seg"><b data-seg="h">00</b><span>Hrs</span></div>
+              <div class="cdown__seg"><b data-seg="m">00</b><span>Min</span></div>
+              <div class="cdown__seg"><b data-seg="s">00</b><span>Sec</span></div>
+            </div>
+            <div class="cdown__ft"><span data-cstate>Count proceeding</span><span>Join before T-0</span></div>
+          </div></div>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><hr class="rule"></div>
+
+
+  <!-- 01 / WHO -->
+  <section class="section" id="who">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">01 / 04</span><span class="lbl">Who we want</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:19ch">We are not looking for people who already know how.</h2>
+        <p class="body" data-rv style="margin-top:22px;--d:60ms">
+          A first-year team cannot recruit on experience, because almost nobody has any. What we can
+          recruit on is <strong>follow-through</strong> &mdash; the willingness to take a small, boring,
+          specific task and actually finish it by the date you said.
+        </p>
+        <p class="body" data-rv style="--d:120ms">
+          If you have built things before, good, you will move fast and end up teaching. If you have
+          never opened a CAD file, also good: the onboarding track assumes exactly that.
+        </p>
+
+        <div class="cards" style="margin-top:40px" data-rv>
+          <article class="card">
+            <span class="card__no">A</span><h3>Engineering &amp; computing</h3>
+            <p>Mechanical, electrical, civil, environmental, software, data. Structures, avionics,
+            propulsion, guidance and payload all start here.</p>
+          </article>
+          <article class="card">
+            <span class="card__no">B</span><h3>Business &amp; communication</h3>
+            <p>Sponsorship, budget, media, outreach and documentation sit in Mission Operations, and
+            the program does not fly without them.</p>
+          </article>
+          <article class="card">
+            <span class="card__no">C</span><h3>Design &amp; the undecided</h3>
+            <p>Brand, identity, photography, video &mdash; and anyone who simply wants to find out what
+            they are good at. Rotate and see.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 / TRACK -->
+  <section class="section" id="track">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">02 / 04</span><span class="lbl">Onboarding</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:16ch">Five steps to the range.</h2>
+        <p class="lede" style="margin-top:20px" data-rv>Roughly your first eight weeks.</p>
+        <ol class="steps" style="margin-top:36px" data-rv>
+            <li>
+              <span class="sn">01</span>
+              <div><h3>Show up to an interest meeting</h3><p>No application, no interview, no resume. Come to a general body meeting, watch what the divisions are arguing about that week, and decide whether you want in.</p></div>
+            </li>
+            <li>
+              <span class="sn">02</span>
+              <div><h3>Run the onboarding build</h3><p>Every new member builds and flies a small low-power rocket in their first few weeks. It is the fastest way to learn the vocabulary, the safety culture, and whether you like this.</p></div>
+            </li>
+            <li>
+              <span class="sn">03</span>
+              <div><h3>Rotate two divisions</h3><p>Spend a couple of weeks each with two divisions that interest you. You are not committing to anything yet, and you are allowed to discover you were wrong about what you liked.</p></div>
+            </li>
+            <li>
+              <span class="sn">04</span>
+              <div><h3>Take a task on the vehicle</h3><p>Pick a home division and own a real deliverable on the flight article &mdash; a part, a board, a procedure, a test. Small scope, real consequences, a lead reviewing your work.</p></div>
+            </li>
+            <li>
+              <span class="sn">05</span>
+              <div><h3>Fly it</h3><p>Be on the range team for launch day. Everyone who put work into the vehicle is there when it goes up, and everyone walks the recovery field.</p></div>
+            </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 / LOGISTICS -->
+  <section class="section" id="logistics">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">03 / 04</span><span class="lbl">Logistics</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:16ch">When and where.</h2>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px">
+          <div data-rv>
+            <table class="spec">
+              <caption class="kicker" style="text-align:left;padding-bottom:14px">Meetings</caption>
+              <tbody>
+                <tr><th scope="row">General body</th><td>Weekly <small>Confirm day &amp; room on Eagle Link</small></td></tr>
+                <tr><th scope="row">Division sessions</th><td>Weekly <small>Scheduled by each lead</small></td></tr>
+                <tr><th scope="row">Build sessions</th><td>Weekends <small>Heavier near review gates</small></td></tr>
+                <tr><th scope="row">Launch days</th><td>Monthly <small>Certified range, travel by carpool</small></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div data-rv style="--d:90ms">
+            <table class="spec">
+              <caption class="kicker" style="text-align:left;padding-bottom:14px">Commitment</caption>
+              <tbody>
+                <tr><th scope="row">Typical week</th><td>4&ndash;6 hrs</td></tr>
+                <tr><th scope="row">Division lead</th><td>8&ndash;12 hrs</td></tr>
+                <tr><th scope="row">Dues</th><td>See Eagle Link <small>Waivers available &mdash; ask, do not skip</small></td></tr>
+                <tr><th scope="row">Required gear</th><td>None <small>Safety equipment provided</small></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="kicker" style="margin-top:20px">Exact times are posted on Eagle Link and in the Discord each semester.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 / FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">04 / 04</span><span class="lbl">FAQ</span></div>
+      <div>
+        <h2 class="display d2" data-rv style="max-width:14ch">Questions we get.</h2>
+        <div class="faq" style="margin-top:32px" data-rv>
+          <details>
+            <summary>Do I need to be an engineering major?</summary>
+            <div class="ans">No. Most of the team is engineering or computing, but the divisions that keep a rocket legal, funded and documented need people from business, communication, marketing, environmental science and design. If you want to be useful here, there is a seat.</div>
+          </details>
+          <details>
+            <summary>I have never built anything. Is that a problem?</summary>
+            <div class="ans">It is the normal starting point. This is a first-year club &mdash; almost nobody on the roster has flown a high-power rocket before. The onboarding build exists precisely so that your first time touching hardware is not on the flight article.</div>
+          </details>
+          <details>
+            <summary>How much time does it actually take?</summary>
+            <div class="ans">Plan on one general body meeting plus one division work session per week, roughly four to six hours. It climbs before a review gate or a launch. Leads carry more. We would rather you commit to a small scope and hit it than over-promise in September and vanish in October.</div>
+          </details>
+          <details>
+            <summary>Is any of this dangerous?</summary>
+            <div class="ans">High-power rocketry is regulated, and we operate inside that regulation &mdash; certified launch sites, a range safety officer, NFPA 1127 procedures, and supervised handling of energetics. Safety training comes before you touch anything that stores energy. Nobody flies outside a sanctioned range.</div>
+          </details>
+          <details>
+            <summary>Can I get certified to fly my own rockets?</summary>
+            <div class="ans">Yes. We run a Tripoli Level 1 and Level 2 certification track and will walk you through the build, the paperwork and the cert flight. Several members will certify this season.</div>
+          </details>
+          <details>
+            <summary>Does this count for credit or look good for internships?</summary>
+            <div class="ans">It does not carry course credit. It does give you a documented hardware project, a design review record and a flight you can talk about in detail &mdash; which is the part recruiters actually probe in interviews.</div>
+          </details>
+          <details>
+            <summary>I am a graduate student / faculty member. Can I fly a payload?</summary>
+            <div class="ans">Yes, that is an explicit goal of the payload division. AQ-1 carries a documented payload bay with a published mechanical and electrical interface. Email us and we will send the interface control document.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="band" id="contact">
+    <div class="wrap band__in">
+      <div data-rv>
+        <span class="kicker">Apply &mdash; Season 01</span>
+        <h2 class="display d2" style="margin-top:16px">Come to a meeting.</h2>
+        <p>That is the whole application. Bring nothing. Ask the dumbest question in the room &mdash;
+        somebody else is wondering the same thing.</p>
+      </div>
+      <div data-rv style="--d:120ms">
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:deeptech@fgcu.edu?subject=I%20want%20to%20join%20DeepTech">Email the team <span class="arw">&rarr;</span></a>
+          <a class="btn btn--ghost" href="#" data-todo="discord">Discord <span class="arw">&rarr;</span></a>
+        </div>
+        <div class="btn-row" style="margin-top:12px">
+          <a class="btn btn--ghost" href="#" data-todo="eaglelink">Eagle Link <span class="arw">&rarr;</span></a>
+          <a class="btn btn--ghost" href="#" data-todo="instagram">Instagram <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:18px">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+            <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+            <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+          </svg>
+          <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026</small></span>
+        </a>
+        <p class="body" style="font-size:.9rem;max-width:34ch">
+          Student rocketry and advanced hardware at Florida Gulf Coast University.
+        </p>
+      </div>
+
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="vehicles.html">Vehicles</a></li>
+          <li><a href="vehicles.html#profile">Flight profile</a></li>
+          <li><a href="divisions.html">Divisions</a></li>
+          <li><a href="index.html#program">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="join.html">Join the team</a></li>
+          <li><a href="join.html#faq">FAQ</a></li>
+          <li><a href="partners.html">Sponsorship</a></li>
+          <li><a href="mailto:deeptech@fgcu.edu">Email us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ground station</h4>
+        <address class="ftr__addr">
+          Florida Gulf Coast University<br>
+          10501 FGCU Blvd S<br>
+          Fort Myers, FL 33965<br>
+          26.4637&deg;N 81.7748&deg;W
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordmark" aria-hidden="true"><b>DEEPTECH</b></div>
+
+  <div class="wrap">
+    <div class="ftr__legal">
+      <span>&copy; 2026 FGCU DeepTech &mdash; Registered student organization</span>
+      <span>Season 01 &middot; Flight 001 &middot; Aquila-1</span>
+      <span>Ad astra per aspera</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

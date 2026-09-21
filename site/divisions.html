@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divisions — FGCU DeepTech</title>
+<meta name="description" content="The seven divisions of FGCU DeepTech: propulsion, structures, avionics, recovery, guidance and control, payload, and mission operations.">
+<meta name="theme-color" content="#06070A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Divisions — FGCU DeepTech">
+<meta property="og:description" content="The seven divisions of FGCU DeepTech: propulsion, structures, avionics, recovery, guidance and control, payload, and mission operations.">
+<meta property="og:image" content="assets/img/hero-launch.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="mesh" aria-hidden="true"></div>
+
+<!-- ===== STATUS STRIP ===== -->
+<div class="strip" role="status" aria-label="Program status">
+  <div class="strip__in">
+    <i class="go"><span class="dot dot--pulse"></span>Systems nominal</i>
+    <i class="hide-s">Flight&nbsp;001 &middot; Aquila-1</i>
+    <i><span id="strip-t" class="tnum">T-000:00:00:00</span></i>
+    <i class="hide-s" id="strip-pos">26.4637&deg;N 81.7748&deg;W</i>
+    <i class="last hide-s">Fort Myers, FL</i>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+        <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+        <path d="M16 8.2v14.6" stroke="#2EE08C" stroke-width=".9" stroke-opacity=".45"/>
+        <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+      </svg>
+      <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026 &middot; Season 01</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Mission</a>
+      <a href="vehicles.html">Vehicles</a>
+      <a href="divisions.html" aria-current="page">Divisions</a>
+      <a href="join.html">Join</a>
+      <a href="partners.html">Partners</a>
+    </nav>
+
+    <div class="hdr__cta">
+      <a class="btn btn--primary" href="join.html">Join the team <span class="arw">&rarr;</span></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <a class="dl" href="index.html"><em>01</em>Mission</a>
+  <a class="dl" href="vehicles.html"><em>02</em>Vehicles</a>
+  <a class="dl" href="divisions.html" aria-current="page"><em>03</em>Divisions</a>
+  <a class="dl" href="join.html"><em>04</em>Join</a>
+  <a class="dl" href="partners.html"><em>05</em>Partners</a>
+  <a class="btn btn--primary" href="join.html">Apply now <span class="arw">&rarr;</span></a>
+</div>
+
+<!-- ===== SCROLL TELEMETRY ===== -->
+<div class="telem" aria-hidden="true">
+  <span>ALT</span>
+  <div class="telem__bar"><b></b></div>
+  <span class="telem__val tnum">000%</span>
+</div>
+
+<main id="main">
+  <section class="phead">
+    <div class="wrap">
+      <div class="phead__crumb"><b>Program / Divisions</b></div>
+      <div class="phead__grid">
+        <div>
+          <h1 class="display d1" data-rv>Seven<br>divisions.</h1>
+          <p class="lede" data-rv style="--d:120ms">One integrated vehicle program, split into the seven places the work actually lives. You join one as your home division and are welcome in any of the others. No prior experience is assumed anywhere on this page.</p>
+        </div>
+        <div data-rv style="--d:200ms"><dl class="stats" style="border-top:0">
+            <div style="border-left:1px solid var(--line)"><dt>Divisions</dt><dd>07</dd></div>
+            <div><dt>Prereqs</dt><dd>None</dd></div>
+          </dl></div>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><hr class="rule"></div>
+
+  <section class="section section--tight" id="div-01">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 01</span><span class="lbl">Solids &middot; Hybrids</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Propulsion</h2>
+          <span class="chip chip--go"><span class="dot"></span>Staffing</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">Everything that makes thrust, and everything that measures it. For Season 01 that means selecting and characterising the AQ-1 motor, building an instrumented static-fire stand, and writing the propellant handling procedures that keep the rest of it legal and survivable.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>Motor selection &amp; thrust-curve analysis</li>
+                <li>Static fire stand design</li>
+                <li>Load cell calibration &amp; DAQ</li>
+                <li>Propellant handling procedure</li>
+                <li>Hybrid feed-system research</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>OpenRocket / RASAero</li>
+                <li>LabJack DAQ</li>
+                <li>Hand tools &amp; fixturing</li>
+                <li>NFPA 1127 familiarity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-02">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 02</span><span class="lbl">Composites &middot; FEA</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Airframe &amp; Structures</h2>
+          <span class="chip chip--go"><span class="dot"></span>Staffing</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">The load path from the motor mount to the nose cone. Body tubes, fin cans, bulkheads, centring rings, and the joints between them. If it has to carry a force, this division owns it &mdash; from the CAD model through to the part in your hand.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>Full-vehicle CAD assembly</li>
+                <li>Fin flutter &amp; divergence analysis</li>
+                <li>Carbon / fiberglass layup</li>
+                <li>FEA on flight and landing loads</li>
+                <li>Machining, printing &amp; finishing</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>SolidWorks or Fusion 360</li>
+                <li>ANSYS / FEA basics</li>
+                <li>Composite wet layup</li>
+                <li>Lathe, mill, 3D printing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-03">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 03</span><span class="lbl">PCB &middot; Firmware</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Avionics</h2>
+          <span class="chip chip--go"><span class="dot"></span>Staffing</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">The vehicle's nervous system: sense state, decide, fire charges, log everything. This is where electrical and computing students find the deep end fast, because the code has exactly one chance to run correctly.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>Flight computer PCB design</li>
+                <li>Embedded firmware &amp; state machine</li>
+                <li>Sensor fusion and filtering</li>
+                <li>Deployment event logic</li>
+                <li>Ground station software</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>KiCad</li>
+                <li>C / C++ on STM32</li>
+                <li>I2C, SPI, UART</li>
+                <li>Python for data reduction</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-04">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 04</span><span class="lbl">Dual deploy</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Recovery</h2>
+          <span class="chip chip--go"><span class="dot"></span>Staffing</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">Getting the vehicle back in a condition that lets it fly again. Deceptively deep: descent rate, drift radius, shock cord elongation, charge sizing, and a redundancy argument you have to defend in front of a range safety officer.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>Descent rate &amp; drift analysis</li>
+                <li>Parachute sizing and fabrication</li>
+                <li>Ejection charge ground testing</li>
+                <li>Shock cord &amp; hardware selection</li>
+                <li>Redundancy failure analysis</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>Sewing &amp; canopy fabrication</li>
+                <li>Black powder handling</li>
+                <li>Statistics of drift</li>
+                <li>Rigging hardware</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-05">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 05</span><span class="lbl">TVC &middot; Simulation</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Guidance &amp; Control</h2>
+          <span class="chip chip--dev"><span class="dot"></span>Recruiting</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">Today: six-degree-of-freedom simulation to validate everything the other divisions assume. Tomorrow: the Vertex problem &mdash; thrust vector control, powered descent guidance, and an autonomous landing. The longest-horizon work on the team.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>6-DOF flight simulation</li>
+                <li>Control loop design and tuning</li>
+                <li>TVC gimbal prototyping</li>
+                <li>Kalman filtering / state estimation</li>
+                <li>Powered descent trajectory optimisation</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>MATLAB / Simulink or Python</li>
+                <li>Control theory coursework</li>
+                <li>Numerical optimisation</li>
+                <li>Rapid prototyping</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-06">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 06</span><span class="lbl">Science</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Payload &amp; Research</h2>
+          <span class="chip chip--dev"><span class="dot"></span>Recruiting</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">A flight without data is a firework. This division gives every launch a reason: instrumented payloads for FGCU research groups, our own atmospheric and vibration data, and the interface documentation that lets outside experiments fly safely.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>Sensor package design &amp; integration</li>
+                <li>Interface control documentation</li>
+                <li>Vibration &amp; thermal testing</li>
+                <li>Post-flight data reduction</li>
+                <li>Research partnerships across campus</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>Embedded sensing</li>
+                <li>Python / pandas</li>
+                <li>Test planning</li>
+                <li>Technical writing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="section section--tight" id="div-07">
+    <div class="wrap split">
+      <div class="split__rail"><span class="idx">Div 07</span><span class="lbl">Safety &middot; Range &middot; Business</span></div>
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px" data-rv>
+          <h2 class="display d2">Mission Operations</h2>
+          <span class="chip chip--go"><span class="dot"></span>Staffing</span>
+        </div>
+        <p class="body" data-rv style="margin-top:20px;--d:60ms">Nothing leaves the ground without this division. Waivers, range coordination, checklists, comms discipline, and the budget that pays for all of it. Also the home for anyone who wants to run sponsorship, media or outreach rather than turn a wrench.</p>
+
+        <div class="vgrid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);margin-top:36px" data-rv>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">What the division owns</h3>
+            <ul class="dlist">
+                <li>FAA waiver &amp; range coordination</li>
+                <li>Launch day checklists &amp; comms</li>
+                <li>Safety review and go/no-go criteria</li>
+                <li>Budget, procurement &amp; sponsorship</li>
+                <li>Outreach, media &amp; documentation</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="kicker" style="margin-bottom:14px">Skills you will pick up</h3>
+            <ul class="dlist">
+                <li>Project management</li>
+                <li>Technical writing</li>
+                <li>Graphic design / video</li>
+                <li>Fundraising &amp; outreach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><hr class="rule"></div>
+  </section>
+
+  <section class="band">
+    <div class="wrap band__in">
+      <div data-rv>
+        <span class="kicker">Still deciding</span>
+        <h2 class="display d2" style="margin-top:16px">Pick one. Change later.</h2>
+        <p>New members rotate through two divisions before committing. Nobody is locked into a
+        choice they made in week one.</p>
+      </div>
+      <div class="btn-row" data-rv><a class="btn btn--primary" href="join.html">Start the onboarding <span class="arw">&rarr;</span></a></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:18px">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 1.6 29 9v14L16 30.4 3 23V9L16 1.6Z" stroke="rgba(255,255,255,.26)" stroke-width="1.1"/>
+            <path d="M16 8.2 22.2 22.8H9.8L16 8.2Z" fill="#2EE08C" fill-opacity=".14" stroke="#2EE08C" stroke-width="1.2"/>
+            <ellipse cx="16" cy="19.4" rx="11.6" ry="3.5" stroke="#3A78E8" stroke-width="1" stroke-opacity=".8" transform="rotate(-14 16 19.4)"/>
+          </svg>
+          <span class="brand__txt">FGCU&nbsp;DeepTech<small>Est. 2026</small></span>
+        </a>
+        <p class="body" style="font-size:.9rem;max-width:34ch">
+          Student rocketry and advanced hardware at Florida Gulf Coast University.
+        </p>
+      </div>
+
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="vehicles.html">Vehicles</a></li>
+          <li><a href="vehicles.html#profile">Flight profile</a></li>
+          <li><a href="divisions.html">Divisions</a></li>
+          <li><a href="index.html#program">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="join.html">Join the team</a></li>
+          <li><a href="join.html#faq">FAQ</a></li>
+          <li><a href="partners.html">Sponsorship</a></li>
+          <li><a href="mailto:deeptech@fgcu.edu">Email us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Ground station</h4>
+        <address class="ftr__addr">
+          Florida Gulf Coast University<br>
+          10501 FGCU Blvd S<br>
+          Fort Myers, FL 33965<br>
+          26.4637&deg;N 81.7748&deg;W
+        </address>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordmark" aria-hidden="true"><b>DEEPTECH</b></div>
+
+  <div class="wrap">
+    <div class="ftr__legal">
+      <span>&copy; 2026 FGCU DeepTech &mdash; Registered student organization</span>
+      <span>Season 01 &middot; Flight 001 &middot; Aquila-1</span>
+      <span>Ad astra per aspera</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
